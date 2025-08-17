@@ -1,0 +1,221 @@
+import { ArrowUpRight, FileJson, Image as ImageIcon, Wand2, Youtube, Baby } from "lucide-react";
+
+export default function Portfolio() {
+  // icon mapping for glass/liquid badges
+  const ICONS: Record<string, any> = {
+    json: FileJson,
+    seo: ImageIcon,
+    gemini: Wand2,
+    youtube: Youtube,
+    kids: Baby,
+  };
+
+  const projects = [
+    {
+      iconType: "json",
+      title: "ฟอร์มสร้าง JSON สำหรับวิดีโอหรือรูปภาพ",
+      subtitle: "กรอกครั้งเดียว ได้ JSON พร้อมใช้ — สลับโหมด VDO/ภาพ และคัดลอกหรือดาวน์โหลดได้ทันที",
+      url: "https://incredible-swan-5f1791.netlify.app/",
+      badges: ["Web App", "JSON Generator", "VDO/Image", "Netlify"],
+      highlights: [
+        "กรอกข้อมูลครั้งเดียว ระบบจัดรูปแบบเป็น JSON พร้อมใช้",
+        "สลับโหมดได้ทั้งวิดีโอ (VDO) และรูปภาพ (Image)",
+        "กดคัดลอก JSON หรือดาวน์โหลดไฟล์ได้ทันที",
+        "ออกแบบฟอร์มให้เข้าใจง่าย เหมาะกับการทำพรอมป์มาตรฐานทีม"
+      ],
+      impact: [
+        "ลดเวลาการเตรียมพรอมป์และลดความผิดพลาดของฟิลด์",
+        "ยกระดับความสม่ำเสมอของสเปกงานระหว่างทีม",
+        "พร้อมต่อยอดเชื่อมเข้ากับ Pipeline ผลิตวิดีโอ/ภาพอัตโนมัติ"
+      ]
+    },
+    {
+      iconType: "seo",
+      title: "ระบบสร้างคำบรรยายและแท็ก SEO จากภาพ (OpenAI)",
+      subtitle: "เวอร์ชันใช้งานจริง บน Netlify พร้อมฟีเจอร์เต็ม",
+      url: "https://image-description-seo.netlify.app/",
+      badges: ["Web App", "Image Processing", "SEO Automation", "Netlify"],
+      highlights: [
+        "อัปโหลดไฟล์ภาพและสร้างคอนเทนต์ SEO ครบทั้ง Title, Description, Meta, Tags",
+        "รองรับหลายภาษาและโทนการเขียน",
+        "ปรับแต่งข้อมูลก่อนส่งออกได้",
+        "ส่งออกไปยัง Google Sheets หรือดาวน์โหลดเป็น JSON ได้",
+        "UI ใช้งานง่ายพร้อมระบบ Drag & Drop"
+      ],
+      impact: [
+        "ช่วยให้การทำคอนเทนต์เร็วขึ้นหลายเท่า",
+        "ลดความซ้ำซ้อนของงาน SEO",
+        "เพิ่มคุณภาพและความสม่ำเสมอของข้อมูลสินค้า"
+      ]
+    },
+    {
+      iconType: "gemini",
+      title: "AI Content Idea & Script Generator (Gemini)",
+      subtitle: "เครื่องมือสร้างไอเดียคอนเทนต์และสคริปต์อัตโนมัติด้วย Google Gemini",
+      url: "https://gemini.google.com/share/4a120e9ed8e5",
+      badges: ["AI Tool", "Content Generator", "Google Gemini"],
+      highlights: [
+        "สร้างไอเดียหัวข้อคอนเทนต์ตามหมวดหมู่ที่ต้องการ",
+        "สร้างสคริปต์เนื้อหาอัตโนมัติทั้งภาษาไทยและอังกฤษ",
+        "สามารถปรับโทนเสียง เนื้อหา และความยาวให้ตรงกับกลุ่มเป้าหมาย"
+      ],
+      impact: [
+        "ช่วยลดเวลาคิดคอนเทนต์และเตรียมสคริปต์ลงได้อย่างมาก",
+        "เพิ่มคุณภาพและความสอดคล้องของเนื้อหากับแบรนด์",
+        "เหมาะสำหรับนักการตลาด ครีเอเตอร์ และทีมคอนเทนต์ที่ต้องการความเร็วและความแม่นยำ"
+      ]
+    },
+    {
+      iconType: "youtube",
+      title: "YouTube Channel - 10 Mins Learning",
+      subtitle: "ช่อง YouTube ให้ความรู้เข้มข้นในเวลาเพียง 10 นาที",
+      url: "https://www.youtube.com/@10minslearning",
+      badges: ["YouTube", "Education", "Quick Learning"],
+      highlights: [
+        "สรุปเนื้อหาความรู้สำคัญในเวลาเพียง 10 นาที",
+        "เหมาะสำหรับคนที่ต้องการเรียนรู้แบบรวดเร็ว",
+        "มีหัวข้อหลากหลาย ทั้งเทคโนโลยี ธุรกิจ และทักษะชีวิต"
+      ],
+      impact: [
+        "ช่วยให้ผู้ชมใช้เวลาน้อยแต่ได้ความรู้มาก",
+        "เหมาะสำหรับการเรียนรู้ระหว่างเดินทางหรือพักสั้นๆ",
+        "เพิ่มแรงบันดาลใจและความรู้ใหม่ในแต่ละวัน"
+      ]
+    },
+    {
+      iconType: "kids",
+      title: "YouTube Channel - Kiddo Channel",
+      subtitle: "ช่อง YouTube สำหรับเด็ก เสริมสร้างจินตนาการและการเรียนรู้",
+      url: "https://www.youtube.com/@KiddoChannel246",
+      badges: ["YouTube", "Kids", "Learning"],
+      highlights: [
+        "เนื้อหาสนุกสนานและเหมาะกับเด็ก",
+        "ช่วยพัฒนาทักษะการเรียนรู้และความคิดสร้างสรรค์",
+        "มีทั้งนิทาน เพลง และการ์ตูนเสริมความรู้"
+      ],
+      impact: [
+        "ช่วยเสริมสร้างทักษะการเรียนรู้ให้กับเด็ก",
+        "เพิ่มความสัมพันธ์ในครอบครัวผ่านการดูร่วมกัน",
+        "สร้างความเพลิดเพลินและปลอดภัยสำหรับเด็ก"
+      ]
+    }
+  ];
+
+  // glass / liquid icon wrapper
+  function GlassIcon({ children }: { children: React.ReactNode }) {
+    return (
+      <div className="relative grid h-12 w-12 place-items-center rounded-2xl bg-white/30 backdrop-blur-lg ring-1 ring-white/50 shadow-[inset_0_1px_0_rgba(255,255,255,0.6),0_8px_20px_rgba(2,6,23,0.08)]">
+        {/* subtle gradient highlight */}
+        <div className="pointer-events-none absolute inset-0 rounded-2xl bg-gradient-to-br from-white/60 via-white/10 to-white/0" />
+        {/* bottom sheen */}
+        <div className="pointer-events-none absolute -bottom-2 h-6 w-10 rounded-[20px] bg-white/20 blur-xl" />
+        <div className="relative text-slate-900/80">{children}</div>
+      </div>
+    );
+  }
+
+  function LiveButton({ url }: { url: string }) {
+    return (
+      <a
+        href={url}
+        target="_blank"
+        rel="noreferrer"
+        className="inline-flex items-center gap-2 rounded-full bg-indigo-600/80 backdrop-blur-md px-5 py-2 text-sm font-medium text-white shadow-lg transition-all duration-300 hover:bg-indigo-700 hover:scale-105 focus:outline-none focus:ring-2 focus:ring-indigo-400"
+      >
+        Live Demo
+        <ArrowUpRight className="h-4 w-4" />
+      </a>
+    );
+  }
+
+  return (
+    <div className="min-h-screen bg-gradient-to-b from-slate-50 to-slate-100 text-slate-900">
+      {/* Hero */}
+      <header className="mx-auto max-w-4xl px-6 pt-20 pb-12 text-center">
+        <h1 className="mt-2 text-5xl font-bold tracking-tight text-slate-900 sm:text-6xl">Portfolio</h1>
+        <p className="mx-auto mt-5 max-w-2xl text-lg leading-relaxed text-slate-600">
+          <span className="bg-gradient-to-r from-indigo-500 to-purple-600 bg-clip-text font-semibold text-transparent">
+            รวมผลงานเด่นด้านเว็บแอปและช่อง YouTube
+          </span>{" "}
+          ที่สร้างขึ้นเพื่อการสร้างคอนเทนต์ การเรียนรู้ และการแบ่งปันความรู้
+        </p>
+      </header>
+
+      {/* Grid */}
+      <main className="mx-auto max-w-5xl px-6 pb-24">
+        <div className="grid grid-cols-1 gap-12">
+          {projects.map((p, idx) => {
+            const Icon = ICONS[p.iconType] ?? Wand2;
+            return (
+              <article
+                key={idx}
+                className="rounded-3xl border border-slate-200/80 bg-white/60 backdrop-blur-xl shadow-lg transition-all duration-300 hover:-translate-y-1 hover:shadow-2xl"
+              >
+                <div className="p-8 sm:p-10">
+                  <div className="flex flex-col items-start justify-between gap-6 sm:flex-row sm:items-center">
+                    <div className="flex items-start gap-4">
+                      <GlassIcon>
+                        <Icon className="h-6 w-6" />
+                      </GlassIcon>
+                      <div>
+                        <h2 className="text-2xl font-semibold tracking-tight text-slate-900">{p.title}</h2>
+                        <p className="mt-2 text-sm text-slate-600">{p.subtitle}</p>
+                      </div>
+                    </div>
+                    <LiveButton url={p.url} />
+                  </div>
+
+                  <div className="my-6 h-px bg-slate-200/70" />
+
+                  {/* Badges */}
+                  <div className="flex flex-wrap gap-2">
+                    {p.badges.map((b, i) => (
+                      <span
+                        key={i}
+                        className="rounded-full border border-slate-200/70 bg-white/50 backdrop-blur px-3 py-1 text-xs font-medium text-slate-700 shadow-sm"
+                      >
+                        {b}
+                      </span>
+                    ))}
+                  </div>
+
+                  {/* Two-column content */}
+                  <div className="mt-6 grid grid-cols-1 gap-8 sm:grid-cols-2">
+                    <section>
+                      <h3 className="text-sm font-semibold text-slate-700">Key Features</h3>
+                      <ul className="mt-3 list-disc space-y-2 pl-5 text-sm leading-relaxed text-slate-700">
+                        {p.highlights.map((h, i) => (
+                          <li key={i}>{h}</li>
+                        ))}
+                      </ul>
+                    </section>
+                    <section>
+                      <h3 className="text-sm font-semibold text-slate-700">Impact</h3>
+                      <ul className="mt-3 list-disc space-y-2 pl-5 text-sm leading-relaxed text-slate-700">
+                        {p.impact.map((h, i) => (
+                          <li key={i}>{h}</li>
+                        ))}
+                      </ul>
+                    </section>
+                  </div>
+                </div>
+              </article>
+            );
+          })}
+        </div>
+      </main>
+
+      {/* Footer */}
+      <footer className="mx-auto max-w-5xl px-6 pb-16 text-center">
+        <p className="text-sm text-slate-700 font-medium">Natpaphat Thanapaknanhirun</p>
+        <div className="mt-2 text-sm text-slate-600">
+          <span className="mx-2">ID 51 ·</span>
+          <a href="mailto:jaynatpaphat@gmail.com" className="hover:underline">jaynatpaphat@gmail.com</a>
+          <span className="mx-2">·</span>
+          <span>Line: jjonline24</span>
+        </div>
+        <div className="mt-3 text-xs text-slate-500">UTCC Generative AI for Business Opportunities #2</div>
+      </footer>
+    </div>
+  );
+}
