@@ -4,28 +4,65 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width,initial-scale=1" />
     <title>Portfolio</title>
+
     <!-- Tailwind (Play CDN) -->
     <script src="https://cdn.tailwindcss.com"></script>
     <!-- React 18 UMD -->
     <script src="https://unpkg.com/react@18/umd/react.production.min.js"></script>
     <script src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>
-    <!-- Babel (compile JSX ในเบราว์เซอร์) -->
+    <!-- Babel Standalone -->
     <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+
     <script>
-      // Disable right click
-      document.addEventListener('contextmenu', function (e) {
-        e.preventDefault();
-      });
+      // ปิดคลิกขวา (ถ้าไม่อยากปิด ลบสคริปต์นี้ได้)
+      document.addEventListener('contextmenu', function (e) { e.preventDefault(); });
     </script>
+
     <style>
-      /* ปรับฟอนต์ให้ดูคลีน */
-      html { font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, "Helvetica Neue", Arial, "Noto Sans", "Apple Color Emoji", "Segoe UI Emoji"; }
+      html {
+        font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto,
+          "Helvetica Neue", Arial, "Noto Sans", "Apple Color Emoji", "Segoe UI Emoji";
+      }
+      /* วงกลมวิดีโอ */
+      .circle-video {
+        width: 100px;
+        height: 100px;
+        border-radius: 9999px;
+        overflow: hidden;
+        box-shadow: 0 6px 20px rgba(2,6,23,0.15);
+        transform: translateZ(0);
+        transform-origin: center center;
+        transition: transform 0.35s ease, box-shadow 0.35s ease;
+        cursor: pointer;
+        user-select:none;
+        touch-action:manipulation;
+      }
+
+      .circle-video:hover,
+      .circle-video:focus-visible {
+        width:300px; height:300px;
+        box-shadow: 0 14px 40px rgba(2,6,23,0.22);
+        outline:none;
+      }
+      .circle-video video {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        display:block;
+        transform: translateZ(0);
+      }
+    @media (max-width: 720px){
+      .hero{grid-template-columns:1fr; gap:5px}
+      .circle-video{justify-self:start}
+    /* กัน layout ขยับแรงเกินไป: เว้นที่ด้านล่างกล่องข้อความเล็กน้อย */
+    .spacer{height:8px}
     </style>
   </head>
   <body class="min-h-screen bg-gradient-to-b from-slate-50 to-slate-100 text-slate-900">
     <div id="root"></div>
 
-    <script type="text/babel">
+    <!-- ใส่ presets ให้ Babel transpile JSX + ES6 -->
+    <script type="text/babel" data-presets="env,react">
       const projects = [
         {
           icon: "🧩",
@@ -81,23 +118,23 @@
             "เหมาะสำหรับนักการตลาด ครีเอเตอร์ และทีมคอนเทนต์ที่ต้องการความเร็วและความแม่นยำ",
           ],
         },
-       {
-  icon: "💬",
-  title: "LINE AI Chatbot - Real Estate Agent",
-  subtitle: "แชตบอทอัจฉริยะสำหรับเอเจนท์อสังหาริมทรัพย์ เชื่อมต่อกับ LINE",
-  url: "https://lin.ee/79a5N6M", // ไฟล์ QR code ที่ deploy ไปกับเว็บ
-  badges: ["LINE", "AI Chatbot", "Real Estate", "Automation"],
-  highlights: [
-    "เชื่อมต่อ LINE webhook กับ OpenAI ผ่าน make.com automation",
-    "วิเคราะห์ intent ของข้อความลูกค้าอัตโนมัติ",
-    "ค้นหาข้อมูลจาก Google Sheet (ที่ถูกแปลงเป็น markdown และเก็บใน vector database ของ OpenAI)",
-  ],
-  impact: [
-    "ช่วยเอเจนท์ตอบกลับลูกค้าได้อย่างมืออาชีพและทันใจ",
-    "ลดเวลาการตอบคำถามซ้ำ ๆ ของลูกค้า",
-    "สร้างประสบการณ์การบริการที่ทันสมัยและเป็นมิตร",
-  ],
-         },
+        {
+          icon: "💬",
+          title: "LINE AI Chatbot - Real Estate Agent",
+          subtitle: "แชตบอทอัจฉริยะสำหรับเอเจนท์อสังหาริมทรัพย์ เชื่อมต่อกับ LINE",
+          url: "https://lin.ee/79a5N6M",
+          badges: ["LINE", "AI Chatbot", "Real Estate", "Automation"],
+          highlights: [
+            "เชื่อมต่อ LINE webhook กับ OpenAI ผ่าน make.com automation",
+            "วิเคราะห์ intent ของข้อความลูกค้าอัตโนมัติ",
+            "ค้นหาข้อมูลจาก Google Sheet (ที่ถูกแปลงเป็น markdown และเก็บใน vector database ของ OpenAI)",
+          ],
+          impact: [
+            "ช่วยเอเจนท์ตอบกลับลูกค้าได้อย่างมืออาชีพและทันใจ",
+            "ลดเวลาการตอบคำถามซ้ำ ๆ ของลูกค้า",
+            "สร้างประสบการณ์การบริการที่ทันสมัยและเป็นมิตร",
+          ],
+        },
         {
           icon: "📺",
           title: "YouTube Channel - 10 Mins Learning",
@@ -153,17 +190,86 @@
         </a>
       );
 
-      const App = () => (
+      const App = () => {
+        // ** จุดแก้ไข 1: สร้าง Refs เพื่ออ้างอิงถึง DOM elements **
+        const videoWrapperRef = React.useRef(null);
+        const videoRef = React.useRef(null);
+
+        // ** จุดแก้ไข 2: ใช้ useEffect เพื่อจัดการ event listeners หลังจาก component ถูก render แล้ว **
+        React.useEffect(() => {
+            const wrap = videoWrapperRef.current;
+            const v = videoRef.current;
+
+            // ถ้าหา element ไม่เจอ ให้หยุดการทำงาน
+            if (!wrap || !v) {
+                return;
+            }
+
+            // ตั้งค่าเริ่มต้นให้วิดีโอ
+            v.muted = false; 
+            v.setAttribute('playsinline','');
+            v.setAttribute('webkit-playsinline','');
+
+            // สร้างฟังก์ชันสำหรับควบคุมวิดีโอ
+            const playMuted = () => {
+                if (!v.muted) {
+                    v.muted = false;
+                }
+                v.play().catch(err => console.error("Autoplay muted failed:", err));
+            };
+
+            const pauseVideo = () => {
+                v.pause();
+            };
+
+            const handleClick = (e) => {
+                e.preventDefault();
+                v.muted = false;
+                v.currentTime = 0;
+                v.play().catch(err => console.error("Play with sound failed:", err));
+            };
+
+            // เพิ่ม Event Listeners
+            wrap.addEventListener('mouseenter', playMuted);
+            wrap.addEventListener('mouseleave', pauseVideo);
+            wrap.addEventListener('focus', playMuted);
+            wrap.addEventListener('blur', pauseVideo);
+            wrap.addEventListener('click', handleClick);
+
+            // Cleanup function: ลบ event listeners ออกเมื่อ component ถูก unmount
+            return () => {
+                wrap.removeEventListener('mouseenter', playMuted);
+                wrap.removeEventListener('mouseleave', pauseVideo);
+                wrap.removeEventListener('focus', playMuted);
+                wrap.removeEventListener('blur', pauseVideo);
+                wrap.removeEventListener('click', handleClick);
+            };
+        }, []); // array ว่าง หมายความว่า effect นี้จะทำงานแค่ครั้งเดียวหลัง render ครั้งแรก
+
+        return (
         <div>
-          <header className="mx-auto max-w-4xl px-6 pt-20 pb-12 text-center">
-            <h1 className="mt-2 text-5xl font-bold tracking-tight text-slate-900 sm:text-6xl">Portfolio</h1>
-            <p className="mx-auto mt-5 max-w-2xl text-lg leading-relaxed text-slate-600">
+          <header className="mx-auto max-w-lg px-6 pt-20 pb-6 text-center">
+            <h1 className="mt-3 text-xl font-bold tracking-tight text-slate-900 sm:text-6xl">Portfolio</h1>
+
+            {/* 3 บรรทัด */}
+            <p className="mx-auto mt-3 max-w-2xl text-lg leading-relaxed text-slate-600">
               <span className="bg-gradient-to-r from-indigo-500 to-purple-600 bg-clip-text font-semibold text-transparent">
                 รวมผลงานเด่นด้านเว็บแอปและช่อง YouTube
-              </span>{" "}</p>
-             <p className="mx-auto mt-5 max-w-2xl text-lg leading-relaxed text-slate-600">
+              </span>
+            </p>
+            <p className="mx-auto mt-3 max-w-lg text-lg leading-relaxed text-slate-600">
               สร้างขึ้นเพื่อการสร้างคอนเทนต์ การเรียนรู้ และการแบ่งปันความรู้
             </p>
+            {/* วิดีโอวงกลม: อยู่กึ่งกลางใต้ 3 บรรทัด */}
+            <div className="mt-5 grid place-items-center">
+              {/* ** จุดแก้ไข 3: ผูก Refs เข้ากับ elements ** */}
+              <div ref={videoWrapperRef} className="circle-video" aria-label="Circle video">
+                <video ref={videoRef} playsInline loop preload="metadata">
+                  <source src="present.mp4" type="video/mp4" />
+                  Your browser does not support video tag.
+                </video>
+              </div>
+            </div>
           </header>
 
           <main className="mx-auto max-w-5xl px-6 pb-24">
@@ -234,8 +340,9 @@
           </footer>
         </div>
       );
-
+};
       ReactDOM.createRoot(document.getElementById("root")).render(<App />);
     </script>
+    <!-- ** จุดแก้ไข 4: ลบ script block เดิมที่ควบคุมวิดีโอออกไป ** -->
   </body>
 </html>
