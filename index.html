@@ -136,6 +136,26 @@
           ],
         },
         {
+          icon: "🧹",
+          title: "Real Estate Data Cleansing Tool",
+          subtitle: "เว็บทำความสะอาด/จัดรูปแบบข้อมูลอสังหาฯ อัตโนมัติ",
+          url: "https://realestatedatacleansing.netlify.app/",
+          dataUrl: "https://docs.google.com/spreadsheets/d/1AcsnyoVlkdGP89H1MxsWHVi6vpVI9YA9FO-euwLpWzw",
+          badges: ["Web App", "Data Cleansing", "Google Sheet", "Automation"],
+          highlights: [
+            "อัปโหลดไฟล์หรือใส่ข้อมูล แล้วระบบจะจัดให้อยู่ในรูปแบบมาตรฐาน",
+            "รองรับการเพิ่มคอลัมน์สำคัญ เช่น Floor, Bedroom, Status, Property Type",
+            "ส่งออกข้อมูลไปยัง Google Sheets ได้ทันที",
+            "ออกแบบมาเพื่อเอเจนท์อสังหาฯ ที่ต้องการความรวดเร็วและแม่นยำ"
+          ],
+          impact: [
+            "ลดเวลาการเตรียมไฟล์ข้อมูลก่อนโพสต์",
+            "ทำให้ข้อมูลแต่ละ listing เป็นรูปแบบเดียวกัน",
+            "ช่วยให้ workflow ของเอเจนท์เป็นระบบมากขึ้น",
+            "อัปเดตล่าสุด: 22 กันยา 2025"
+          ],
+        },
+        {
           icon: "📺",
           title: "YouTube Channel - 10 Mins Learning",
           subtitle: "ช่อง YouTube ให้ความรู้เข้มข้นในเวลาเพียง 10 นาที",
@@ -187,6 +207,17 @@
           className="inline-flex items-center gap-2 rounded-full bg-indigo-600/80 backdrop-blur-md px-5 py-2 text-sm font-medium text-white shadow-lg transition-all duration-300 hover:bg-indigo-700 hover:scale-105 focus:outline-none focus:ring-2 focus:ring-indigo-400"
         >
           Live Demo <span aria-hidden="true">↗</span>
+        </a>
+      );
+
+      const DataButton = ({ url }) => (
+        <a
+          href={url}
+          target="_blank"
+          rel="noreferrer"
+          className="inline-flex items-center gap-2 rounded-full bg-emerald-600/80 backdrop-blur-md px-5 py-2 text-sm font-medium text-white shadow-lg transition-all duration-300 hover:bg-emerald-700 hover:scale-105 focus:outline-none focus:ring-2 focus:ring-emerald-400"
+        >
+          View Data <span aria-hidden="true">↗</span>
         </a>
       );
 
@@ -288,7 +319,10 @@
                           <p className="mt-2 text-sm text-slate-600">{p.subtitle}</p>
                         </div>
                       </div>
-                      <LiveButton url={p.url} />
+                      <div className="flex items-center gap-2">
+                        <LiveButton url={p.url} />
+                        {p.dataUrl ? <DataButton url={p.dataUrl} /> : null}
+                      </div>
                     </div>
 
                     <div className="my-6 h-px bg-slate-200/70"></div>
@@ -345,4 +379,3 @@
     </script>
   </body>
 </html>
-
