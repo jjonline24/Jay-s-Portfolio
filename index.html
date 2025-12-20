@@ -65,6 +65,24 @@
     <script type="text/babel" data-presets="env,react">
       const projects = [
         {
+          icon: "📊",
+          title: "Sales Analytic Dashboard",
+          subtitle: "แดชบอร์ดวิเคราะห์ข้อมูลยอดขายและแสดงผลกราฟเพื่อการตัดสินใจทางธุรกิจ",
+          url: "#", // ใส่ลิงก์จริงของ Dashboard ที่นี่
+          badges: ["Web App", "Data Visualization", "Analytics", "React"],
+          highlights: [
+            "แสดงกราฟสรุปยอดขาย (Sales Trends) รายวัน/เดือน/ปี",
+            "เจาะลึกข้อมูลสินค้าขายดี (Top Products) และหมวดหมู่",
+            "ระบบ Filter กรองข้อมูลตามช่วงเวลาและ Segment",
+            "UI ทันสมัย อ่านข้อมูลได้ง่ายและรวดเร็ว (Interactive Charts)"
+          ],
+          impact: [
+            "ช่วยให้เจ้าของธุรกิจตัดสินใจจากข้อมูล (Data-Driven) ได้ทันที",
+            "ลดเวลาในการทำรายงานสรุปยอดขายแบบ Manual",
+            "มองเห็นโอกาสและจุดที่ต้องปรับปรุงของธุรกิจได้ชัดเจนในหน้าเดียว"
+          ],
+        },
+        {
           icon: "🧩",
           title: "ฟอร์มสร้าง JSON สำหรับวิดีโอหรือรูปภาพ",
           subtitle: "กรอกครั้งเดียว ได้ JSON พร้อมใช้ — สลับโหมด VDO/ภาพ และคัดลอกหรือดาวน์โหลดได้ทันที",
@@ -222,26 +240,21 @@
       );
 
       const App = () => {
-        // ** จุดแก้ไข 1: สร้าง Refs เพื่ออ้างอิงถึง DOM elements **
         const videoWrapperRef = React.useRef(null);
         const videoRef = React.useRef(null);
 
-        // ** จุดแก้ไข 2: ใช้ useEffect เพื่อจัดการ event listeners หลังจาก component ถูก render แล้ว **
         React.useEffect(() => {
             const wrap = videoWrapperRef.current;
             const v = videoRef.current;
 
-            // ถ้าหา element ไม่เจอ ให้หยุดการทำงาน
             if (!wrap || !v) {
                 return;
             }
 
-            // ตั้งค่าเริ่มต้นให้วิดีโอ
             v.muted = false; 
             v.setAttribute('playsinline','');
             v.setAttribute('webkit-playsinline','');
 
-            // สร้างฟังก์ชันสำหรับควบคุมวิดีโอ
             const playMuted = () => {
                 if (!v.muted) {
                     v.muted = false;
@@ -260,14 +273,12 @@
                 v.play().catch(err => console.error("Play with sound failed:", err));
             };
 
-            // เพิ่ม Event Listeners
             wrap.addEventListener('mouseenter', playMuted);
             wrap.addEventListener('mouseleave', pauseVideo);
             wrap.addEventListener('focus', playMuted);
             wrap.addEventListener('blur', pauseVideo);
             wrap.addEventListener('click', handleClick);
 
-            // Cleanup function: ลบ event listeners ออกเมื่อ component ถูก unmount
             return () => {
                 wrap.removeEventListener('mouseenter', playMuted);
                 wrap.removeEventListener('mouseleave', pauseVideo);
@@ -275,7 +286,7 @@
                 wrap.removeEventListener('blur', pauseVideo);
                 wrap.removeEventListener('click', handleClick);
             };
-        }, []); // array ว่าง หมายความว่า effect นี้จะทำงานแค่ครั้งเดียวหลัง render ครั้งแรก
+        }, []); 
 
         return (
         <div>
@@ -293,9 +304,8 @@
             </p>
             {/* วิดีโอวงกลม: อยู่กึ่งกลางใต้ 3 บรรทัด */}
             <div className="mt-5 grid place-items-center">
-              {/* ** จุดแก้ไข 3: ผูก Refs เข้ากับ elements ** */}
-              <div ref={videoWrapperRef} className="circle-video" aria-label="Circle video">
-                <video ref={videoRef} playsInline loop preload="metadata">
+              <div ref={videoWrapperRef} className="circle-video" aria-label="Circle video">
+                <video ref={videoRef} playsInline loop preload="metadata">
                   <source src="present.mp4" type="video/mp4" />
                   Your browser does not support video tag.
                 </video>
@@ -370,7 +380,7 @@
               <span className="mx-2">·</span>
               <span>Line: jjonline24</span>
             </div>
-            <div className="mt-3 text-xs text-slate-500">UTCC Generative AI for Business Opportunities #2</div>
+            <!--div className="mt-3 text-xs text-slate-500">UTCC Generative AI for Business Opportunities #2</div-->
           </footer>
         </div>
       );
